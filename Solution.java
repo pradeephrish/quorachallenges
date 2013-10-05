@@ -46,7 +46,7 @@ public class Solution {
 		public Integer id;
 		public double x;
 		public double y;
-		public double distance=Integer.MAX_VALUE;
+		public double distance=Math.sqrt(x*x+y*y); // hold distance from origin
 	}
 	
 	//each map will store point and their distances for particular topic/question == index,  w.r.t input query
@@ -96,6 +96,9 @@ public class Solution {
 
 
 	private void findNearestQuestions(Integer topsearchCount, Point queryPoint) {
+		
+		Double queryOriginDistance = getDistance(new Point(0d,0d,Integer.MAX_VALUE), queryPoint);
+		
 		// TODO Auto-generated method stub
 //		System.out.println("Finding nearest questions");
 		PriorityQueue<Question> queueQuestions = new PriorityQueue<Question>(topics, new Comparator<Solution.Question>(){
@@ -157,7 +160,9 @@ public class Solution {
 		System.out.println();
 		for (int i = 0; i < topsearchCount; i++) { 
 			Question question = queueQuestions.poll();
-			System.out.print(question.question+" ");
+//			System.out.println(question.distance+" "+queryOriginDistance);
+			if(!(question.distance.equals(queryOriginDistance)))
+				System.out.print(question.question+" ");
 		}
 	}
 
