@@ -1,4 +1,4 @@
-package com.fun.quora.nearby;
+package com.fun.quora.nearby.bruteforce;
 
 import java.io.BufferedReader;
 import java.io.IOException;
